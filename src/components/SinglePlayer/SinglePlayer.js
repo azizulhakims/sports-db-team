@@ -30,10 +30,31 @@ const SinglePlayer = ({player, cart, setCart}) => {
             strPlayer,
             strCutout,
             strDescriptionEN,
-            price: 115,
+            quantity: 1,
             bookmark:'true',
         };
-        // console.log(info);
+
+        // const prevBookmark = localStorage.getItem('bookmark');
+        // const oldBookmark = JSON.parse(prevBookmark);
+        // console.log(oldBookmark);
+
+        // if(oldBookmark){
+        //     const isExist = oldBookmark.find((p) => p.idPlayer === idPlayer);
+
+        //     console.log(isExist);
+
+        //     if (isExist){
+
+        //     } else{
+        //         localStorage.setItem('bookmark', JSON.stringify([... oldBookMark, info]));
+
+        //     }
+
+        //     // localStorage.setItem('bookmark', JSON.stringify([...oldBookmark, info]));
+        // }else{
+        //     localStorage.setItem('bookmark', JSON.stringify([info]));
+        // }
+        console.log(info);
         const prevBookmark = localStorage.getItem('bookmark');
         const oldBookMark = JSON.parse(prevBookmark);
         if(oldBookMark){
@@ -41,7 +62,16 @@ const SinglePlayer = ({player, cart, setCart}) => {
             console.log(isExit)
 
             if(isExit){
-                alert('Already bookmarkded');
+                // alert('Already bookmarkded');
+                const updatePrice = parseFloat(isExit.quantity);
+
+                const newUpdatePrice = updatePrice +1;
+                console.log(newUpdatePrice);
+                // console.log(updatePrice);
+                isExit.quantity = newUpdatePrice;
+                
+                console.log(isExit)
+                
                 return;
             } else{
                 localStorage.setItem('bookmark', JSON.stringify([...oldBookMark, info]));
@@ -52,7 +82,7 @@ const SinglePlayer = ({player, cart, setCart}) => {
             localStorage.setItem('bookmark', JSON.stringify([info]));
              console.log("nai");
         }
-        // console.log(JSON.parse(prevBookmark));
+        console.log(JSON.parse(prevBookmark));
     };
 
     // console.log(cart);
